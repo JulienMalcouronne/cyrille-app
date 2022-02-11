@@ -1,1 +1,26 @@
-yo from index
+<form action="/festivals/search" method="get">
+  <input type="text" name="query" placeholder="Which event are you looking for?">
+  <input type="submit">
+</form>
+<%= link_to "add an item", item_path("new")  %>
+
+
+  <% @items.each do |item| %>
+    <li>
+      <%= item.name %>
+      <br>
+      <%= item.category %>
+      <br>
+      <%= item.era %>
+      <br>
+      <%= link_to "more info", item_path(item[:id]) %>
+      <%= link_to "Edit", edit_item_path(item[:id]) %>
+      <%= link_to "Remove",
+            item_path(item),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+    </li>
+
+  <% end %>
+
+</ul>
